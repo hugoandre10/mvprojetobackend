@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import Hugo.mvProjeto.models.Funcionario;
 import Hugo.mvProjeto.repositorys.FuncionarioRepository;
+import Hugo.mvProjeto.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class FuncionarioService {
@@ -26,7 +27,7 @@ public class FuncionarioService {
 
 	public Funcionario buscarUmFuncionario(Integer id_funcionario) {
 		Optional<Funcionario> funcionario = funcionarioRepository.findById(id_funcionario);
-		return funcionario.orElseThrow();
+		return funcionario.orElseThrow(()-> new ObjectNotFoundException("Funcionário não encontrado!"));
 
 	}
 	
